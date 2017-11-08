@@ -10,3 +10,9 @@ This script will opened the file having links and open them and paste those arti
 
 ### tfidf.py
 This script will calculate tf-idf of the news article corpus.
+
+
+
+## Update: 08/11/17
+### scoring.py
+scoring of urls extracted
