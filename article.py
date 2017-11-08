@@ -4,8 +4,8 @@ with open('links.txt') as f:
     link_list = f.read().splitlines()
 
 length = len(link_list)
-i = 6
-for i in range(7):
+
+for i in range(length):
 	url = link_list[i]
 	g = Goose()
 	article = g.extract(url=url)

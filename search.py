@@ -23,15 +23,22 @@ r = requests.get(url)
 soup = BeautifulSoup(r.content,"lxml")
 
 link_list = []
-for link in soup.findAll('a',{'class' : 'nuEeue hzdq5d ME7ew'}):
-    link_list.append(link.get('href'))
+date_list = []
+for link in soup.findAll('c-wiz',{'class' : 'M1Uqc kWyHVd'}):
+	for l in link.findAll('a', {'class' : 'nuEeue hzdq5d ME7ew'}):
+		link_list.append(l.get('href'))
+	for d in link.findAll('div', {'class' : 'a5SXAc iYiEmb'}):
+		for d1 in d.findAll('span', {'class' : 'oM4Eqe'}):
+			for d2 in d1.findAll('span', {'class' : 'd5kXP YBZVLb'}):
+				date_list.append(d2.get_text())
 
-# for link in link_list:
-# 	print link
+final_date = []
+print link_list
+for i in range(len(date_list)):
+	final_date.append(date_list[i].encode('ascii'))
 
-# with open("Output.txt", "w") as text_file:
-# 	for link in link_list:
-# 		text_file.write("",link)
+print final_date[1]
+
 
 thefile = open('links.txt', 'w')
 for link in link_list:
