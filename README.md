@@ -16,3 +16,9 @@ This script will calculate tf-idf of the news article corpus.
 ## Update: 08/11/17
 ### scoring.py
 scoring of urls extracted
+
+
+
+## Update: 10/11/17
+### fake_real.py
+differentiating between fake and real
