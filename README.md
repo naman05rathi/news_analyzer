@@ -22,3 +22,9 @@ scoring of urls extracted
 ## Update: 10/11/17
 ### fake_real.py
 differentiating between fake and real
+
+
+
+## Update: 12/11/17
+### lsa.py
+latent semantic analysis of document

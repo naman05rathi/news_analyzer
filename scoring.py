@@ -65,8 +65,8 @@ for i in range(len_link_list):
 
 	pos_score = len(pos_list)
 	neg_score = len(neg_list)
-	# print pos_list
-	# print neg_list
+	print pos_score
+	print neg_score
 
 	count = pos_score + neg_score
 	if count == 0:

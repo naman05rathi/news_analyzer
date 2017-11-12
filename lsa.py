@@ -7,7 +7,9 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from goose import Goose
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.naive_bayes import MultinomialNB
+import random
+from sklearn.decomposition import TruncatedSVD
+
 
 
 
@@ -39,7 +41,7 @@ for link in link_list:
 	print link
 
 len_link_list = len(link_list)
-# print len_link_list
+print len_link_list
 
 title = []
 text = []
@@ -57,29 +59,18 @@ for i in range(len_link_list):
 
 
 df_scrape = pd.DataFrame({'title': title, 'text': text})
-# print df_scrape.head()
-df_s = df_scrape.text
-df_data = pd.read_csv('fakereal.csv')
-# print df_data.shape
-# print df_data.head()
-
-df_y = df_data.label
-df_data = df_data.text 
-
+df = df_scrape.text
 
 tfidf_vector = TfidfVectorizer(stop_words='english', max_df=.7)
-tfidf_train = tfidf_vector.fit_transform(df_data)
-tfidf_test = tfidf_vector.transform(df_s)
+tfidfm = tfidf_vector.fit_transform(df)
+# print tfidfm
+# print tfidfm.get_shape()
+feature_name = tfidf_vector.get_feature_names()
+for i in range(0, 20):
+    feat_num = random.randint(0, len(feature_name))
+    print(feature_name[feat_num])
 
-tfidf_df = pd.DataFrame(tfidf_train.A, columns=tfidf_vector.get_feature_names())
+svd = TruncatedSVD(n_components = 100)
 
-clf = MultinomialNB() 
-clf.fit(tfidf_train, df_y)
-pred = clf.predict(tfidf_test)
-
-
-print('\n')
-for i in range(len(final_url)):
-	print final_url[i]
-	print pred[i]
-	print('\n')
+lsa = svd.fit_transform(tfidfm)
+print lsa
